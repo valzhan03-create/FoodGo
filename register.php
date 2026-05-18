@@ -6,6 +6,7 @@ require_once 'config/db.php';
 $errors = [];
 $name   = '';
 $email  = '';
+$phone  = '';
 
 // Обработка формы — только если нажата кнопка «Отправить»
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -13,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // ── 1. Получаем данные из формы ──────────────────────────
     $name             = trim($_POST['name']           ?? '');
     $email            = trim($_POST['email']          ?? '');
+    $phone            = trim($_POST['phone']          ?? '');
     $password         = trim($_POST['password']       ?? '');
     $password_confirm = trim($_POST['password_confirm'] ?? '');
 
@@ -23,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = 'Введите корректный email.';
+    }
+
+    if (empty($phone) || !preg_match('/^\+?[0-9\s\-()]{7,20}$/', $phone)) {
+        $errors[] = 'Введите корректный номер телефона.';
     }
 
     if (strlen($password) < 6) {
@@ -49,9 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
         $stmt = $pdo->prepare(
-            'INSERT INTO users (name, email, password) VALUES (?, ?, ?)'
+            'INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)'
         );
-        $stmt->execute([$name, $email, $password_hash]);
+        $stmt->execute([$name, $email, $phone, $password_hash]);
 
         // ── 5. Перенаправляем на страницу входа ──────────────
         header('Location: login.php?registered=1');
@@ -107,6 +113,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <input class="form-input" type="email" id="email" name="email"
             value="<?= htmlspecialchars($email ?? '') ?>"
             placeholder="ваш@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="phone">Телефон</label>
+          <input class="form-input" type="tel" id="phone" name="phone"
+            value="<?= htmlspecialchars($phone ?? '') ?>"
+            placeholder="+7 900 000-00-00" required>
         </div>
 
         <div class="form-group">
