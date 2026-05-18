@@ -24,8 +24,8 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="cabinet.php" class="btn btn-outline">Кабинет</a>
         <a href="logout.php" class="btn btn-primary">Выйти</a>
       <?php else: ?>
-        <a href="login.php"    class="btn btn-outline">Войти</a>
-        <a href="register.php" class="btn btn-primary">Записаться</a>
+        <a href="login.php" class="btn btn-outline">Войти</a>
+        <a href="menu.php" class="btn btn-primary">Заказы</a>
       <?php endif; ?>
     </div>
   </nav>

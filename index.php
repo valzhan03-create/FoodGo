@@ -1,5 +1,10 @@
 <?php
 session_start();
+require_once 'config/db.php';
+
+// Получаем 3 последних добавленных блюда для показа на главной
+$stmt_new = $pdo->query('SELECT * FROM menu_items ORDER BY created_at DESC, id DESC LIMIT 3');
+$new_dishes = $stmt_new->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -25,41 +30,26 @@ session_start();
   </div>
 </section>
 
-<main class="main">
-  <div class="container">
-    <div class="auth-card" style="text-align: center;">
-      <h1 class="auth-card__title" style="color: var(--color-primary);">Добро пожаловать в FoodGo!</h1>
-      
-      <p style="font-size: var(--font-size-lg); margin: var(--spacing-lg) 0; color: var(--color-text-muted);">
-        Быстрая и вкусная доставка еды в ваш дом
-      </p>
-
-      <div style="background: var(--color-bg); border-radius: var(--radius-md); padding: var(--spacing-lg); margin: var(--spacing-xl) 0;">
-        <h2 style="color: var(--color-primary); margin-bottom: var(--spacing-md);">Популярные блюда</h2>
-        <p style="color: var(--color-text-muted); margin-bottom: var(--spacing-lg);">
-          Посмотрите наше меню и выбирайте самые вкусные блюда!
-        </p>
-      </div>
-
-      <?php if (isset($_SESSION['user_id'])): ?>
-        <p style="color: var(--color-success); font-weight: 600; margin: var(--spacing-lg) 0;">
-          ✓ Вы авторизованы как: <strong><?= htmlspecialchars($_SESSION['user_name']) ?></strong>
-        </p>
-      <?php else: ?>
-        <p style="color: var(--color-text-muted); margin: var(--spacing-lg) 0;">
-          Не зарегистрированы? Создайте аккаунт чтобы быстрее оформлять заказы!
-        </p>
-      <?php endif; ?>
-
-      <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap; margin-top: var(--spacing-xl);">
-        <a href="#menu" class="btn btn-primary">Просмотреть меню</a>
-        <?php if (!isset($_SESSION['user_id'])): ?>
-          <a href="register.php" class="btn btn-outline">Зарегистрироваться</a>
-        <?php endif; ?>
-      </div>
+<?php if (!empty($new_dishes)): ?>
+  <section class="container new-dishes" style="margin-top: var(--spacing-lg);">
+    <h2 class="section-title">Новые блюда</h2>
+    <div class="new-dishes-grid">
+      <?php foreach ($new_dishes as $dish): ?>
+        <div class="dish-card">
+          <div class="dish-image">
+            <img src="<?= htmlspecialchars($dish['image']) ?>" alt="<?= htmlspecialchars($dish['name']) ?>">
+          </div>
+          <div class="dish-name"><?= htmlspecialchars($dish['name']) ?></div>
+          <div class="dish-desc"><?= htmlspecialchars($dish['description']) ?></div>
+          <div class="dish-footer">
+            <div class="price"><?= number_format((float)$dish['price'], 0, '.', ' ') ?> ₸</div>
+            <a href="menu.php#menu" class="btn btn-outline order-btn">Заказать</a>
+          </div>
+        </div>
+      <?php endforeach; ?>
     </div>
-  </div>
-</main>
+  </section>
+<?php endif; ?>
 
 <?php include 'includes/footer.php'; ?>
 
