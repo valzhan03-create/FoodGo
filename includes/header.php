@@ -9,9 +9,9 @@ if (session_status() === PHP_SESSION_NONE) {
   <nav class="navbar container">
     <a href="index.php" class="navbar__logo">FoodGo</a>
 
-    <ul class="navbar__menu">
+      <ul class="navbar__menu">
       <li><a href="index.php">Главная</a></li>
-      <li><a href="#menu">Меню</a></li>
+      <li><a href="menu.php">Меню</a></li>
       <li><a href="#about">О нас</a></li>
       <li><a href="#contacts">Контакты</a></li>
     </ul>
