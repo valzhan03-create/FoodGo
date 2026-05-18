@@ -1,4 +1,240 @@
-/* Контейнер страницы авторизации */
+﻿/* в”Ђв”Ђв”Ђ РћРЎРќРћР’РќР«Р• РЎРўРР›Р в”Ђв”Ђв”Ђ */
+
+html, body {
+  font-family: var(--font-family);
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+/* РљРѕРЅС‚РµР№РЅРµСЂ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* в”Ђв”Ђв”Ђ HEADER Р РќРђР’РР“РђР¦РРЇ в”Ђв”Ђв”Ђ */
+
+.header {
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.hero-banner {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background-image: url('https://www.menubly.com/wp-content/uploads/2025/03/common-menu-design-mistakes-2048x1177.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+}
+
+.hero-banner__content {
+  max-width: 820px;
+  text-align: center;
+}
+
+.hero-banner__subtitle {
+  margin: 0 0 var(--spacing-sm);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-banner__title {
+  margin: 0 0 var(--spacing-lg) 0;
+  color: #ffffff;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1.05;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    height: 360px;
+  }
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg) 0;
+  gap: var(--spacing-xl);
+}
+
+.navbar__logo {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.navbar__menu {
+  display: flex;
+  list-style: none;
+  gap: var(--spacing-xl);
+  flex: 1;
+}
+
+.navbar__menu a {
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.navbar__menu a:hover {
+  color: var(--color-primary);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.navbar__user {
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+/* в”Ђв”Ђв”Ђ FOOTER в”Ђв”Ђв”Ђ */
+
+.footer {
+  background: var(--color-white);
+  border-top: 1px solid var(--color-border);
+  padding: var(--spacing-xl) 0;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  margin-top: auto;
+}
+
+/* в”Ђв”Ђв”Ђ РљРќРћРџРљР в”Ђв”Ђв”Ђ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* в”Ђв”Ђв”Ђ Р¤РћР РњР« в”Ђв”Ђв”Ђ */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+}
+
+.form-input {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* в”Ђв”Ђв”Ђ РђР›Р•Р РўР« в”Ђв”Ђв”Ђ */
+
+.alert-success {
+  background: #F0FDF4;
+  border: 1px solid #86EFAC;
+  border-left: 4px solid var(--color-success);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.alert-success p {
+  color: var(--color-success);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+
+.alert-error {
+  background: #FEF2F2;
+  border: 1px solid #FCA5A5;
+  border-left: 4px solid var(--color-error);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.alert-error p {
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* в”Ђв”Ђв”Ђ РЎРўР РђРќРР¦Рђ РђР’РўРћР РР—РђР¦РР в”Ђв”Ђв”Ђ */
+
 .main {
   min-height: 100vh;
   display: flex;
@@ -7,7 +243,7 @@
   padding: var(--spacing-xl) 0;
 }
 
-/* Карточка формы — по центру страницы */
+/* РљР°СЂС‚РѕС‡РєР° С„РѕСЂРјС‹ вЂ” РїРѕ С†РµРЅС‚СЂСѓ СЃС‚СЂР°РЅРёС†С‹ */
 .auth-card {
   max-width: 480px;
   margin: 0 auto;
@@ -22,6 +258,7 @@
   font-weight: 700;
   margin-bottom: var(--spacing-lg);
   text-align: center;
+  color: var(--color-text);
 }
 
 .auth-card__footer {
@@ -36,25 +273,80 @@
   font-weight: 600;
 }
 
-/* Форма */
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
+/* в”Ђв”Ђв”Ђ РџР РћР¤РР›Р¬ РџРћР›Р¬Р—РћР’РђРўР•Р›РЇ в”Ђв”Ђв”Ђ */
+
+.profile-info {
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
 }
 
-/* Блок ошибок */
-.alert-error {
-  background: #FEF2F2;
-  border: 1px solid #FCA5A5;
-  border-left: 4px solid #DC2626;
-  border-radius: var(--radius-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
   margin-bottom: var(--spacing-md);
 }
 
-.alert-error p {
-  color: #DC2626;
+.profile-field:last-child {
+  margin-bottom: 0;
+}
+
+.profile-label {
+  font-weight: 600;
   font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-value {
+  font-size: var(--font-size-md);
+  color: var(--color-text);
   margin: 0;
 }
+
+.profile-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.profile-actions .btn {
+  flex: 1;
+}
+
+/* в”Ђв”Ђв”Ђ РњР•Р”РРђ Р—РђРџР РћРЎР« в”Ђв”Ђв”Ђ */
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+
+  .navbar__menu {
+    flex-basis: 100%;
+    gap: var(--spacing-md);
+  }
+
+  .navbar__actions {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+
+  .auth-card {
+    max-width: 100%;
+    margin: var(--spacing-md);
+  }
+
+  .profile-actions {
+    flex-direction: column;
+  }
+
+  .profile-actions .btn {
+    width: 100%;
+  }
+}
+
+

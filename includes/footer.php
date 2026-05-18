@@ -2,5 +2,5 @@
 // includes/footer.php — общий подвал сайта
 ?>
 <footer class="footer">
-  <p>&copy; <?= date('Y') ?> CutTime — онлайн-запись в парикмахерскую</p>
+  <p>&copy; <?= date('Y') ?> FoodGo — доставка вкусной еды</p>
 </footer>

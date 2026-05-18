@@ -1,15 +1,19 @@
 <?php
 // includes/header.php — общая шапка сайта
-// Подключайте в начале каждой страницы: <?php include 'includes/header.php'; ?>
+// Подключайте в начале каждой страницы с session_start() перед include
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 <header class="header">
   <nav class="navbar container">
-    <a href="index.php" class="navbar__logo">CutTime</a>
+    <a href="index.php" class="navbar__logo">FoodGo</a>
 
     <ul class="navbar__menu">
       <li><a href="index.php">Главная</a></li>
-      <li><a href="services.php">Услуги</a></li>
-      <li><a href="masters.php">Мастера</a></li>
+      <li><a href="#menu">Меню</a></li>
+      <li><a href="#about">О нас</a></li>
+      <li><a href="#contacts">Контакты</a></li>
     </ul>
 
     <div class="navbar__actions">

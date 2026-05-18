@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Если пользователь уже вошёл — перенаправляем в кабинет
+if (isset($_SESSION['user_id'])) {
+    header('Location: cabinet.php');
+    exit;
+}
+
 // Подключаем базу данных
 require_once 'config/db.php';
 
@@ -74,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Регистрация</title>
+  <title>Регистрация — FoodGo</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/style.css">

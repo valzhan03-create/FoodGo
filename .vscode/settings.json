@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cd \"c:\\\\OSPanel\\\\domains\\\\FoodGo\\\\css\" ; powershell \"\\[System\\.IO\\.File\\]::WriteAllText\\('style\\.css', \\(\\[System\\.IO\\.File\\]::ReadAllText\\('style\\.css'\\)\\)\\.Replace\\('margin: 0;' \\+ \\[Environment\\]::NewLine \\+ '  color: #ffffff;', 'margin: 0 0 var\\(--spacing-lg\\) 0;' \\+ \\[Environment\\]::NewLine \\+ '  color: #ffffff;'\\), \\[System\\.Text\\.Encoding\\]::UTF8\\)\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
