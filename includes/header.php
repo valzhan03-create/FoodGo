@@ -22,7 +22,7 @@ if (session_status() === PHP_SESSION_NONE) {
           <?= htmlspecialchars($_SESSION['user_name']) ?>
         </span>
         <a href="cabinet.php" class="btn btn-outline">Кабинет</a>
-        <a href="logout.php" class="btn btn-primary">Выйти</a>
+        <a href="menu.php" class="btn btn-primary">Заказы</a>
       <?php else: ?>
         <a href="login.php" class="btn btn-outline">Войти</a>
         <a href="menu.php" class="btn btn-primary">Заказы</a>
