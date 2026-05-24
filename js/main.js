@@ -1,14 +1,5 @@
 // main.js — скрипт для оформления корзины и заказов без перезагрузки
 document.addEventListener('DOMContentLoaded', function () {
-  var notice = document.getElementById('catalog-message');
-
-  function showMessage(text, type) {
-    if (!notice) {
-      return;
-    }
-    notice.innerHTML = '<div class="alert alert-' + (type === 'success' ? 'success' : 'error') + '"><p>' + text + '</p></div>';
-  }
-
   document.querySelectorAll('.order-card-form').forEach(function (form) {
     form.addEventListener('submit', function (event) {
       event.preventDefault();
@@ -35,13 +26,17 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(function (data) {
           if (data.success) {
-            showMessage(data.message, 'success');
             var quantityText = 'В заказе: ' + data.quantity;
-            var quantityNode = form.querySelector('.order-quantity');
+            var quantityNode = form.parentNode.querySelector('.order-quantity');
             if (!quantityNode) {
               quantityNode = document.createElement('div');
               quantityNode.className = 'order-quantity';
-              form.parentNode.insertBefore(quantityNode, form.nextSibling);
+              var priceBlock = form.parentNode.querySelector('.price');
+              if (priceBlock) {
+                priceBlock.parentNode.insertBefore(quantityNode, priceBlock.nextSibling);
+              } else {
+                form.parentNode.insertBefore(quantityNode, form);
+              }
             }
             quantityNode.textContent = quantityText;
 
@@ -54,13 +49,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           } else {
             var messages = Array.isArray(data.errors) ? data.errors.join(' ') : 'Ошибка при добавлении в заказ.';
-            showMessage(messages, 'error');
+            alert(messages);
             button.textContent = previousText;
             button.disabled = false;
           }
         })
         .catch(function () {
-          showMessage('Ошибка при добавлении в заказ. Попробуйте ещё раз.', 'error');
+          alert('Ошибка при добавлении в заказ. Попробуйте ещё раз.');
           button.textContent = previousText;
           button.disabled = false;
         });

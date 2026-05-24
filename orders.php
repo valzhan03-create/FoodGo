@@ -12,23 +12,6 @@ if (!is_array($orders)) {
     $orders = [];
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['remove_dish'])) {
-        $removeId = intval($_POST['remove_dish']);
-        if ($removeId > 0 && isset($orders[$removeId])) {
-            unset($orders[$removeId]);
-        }
-    }
-
-    if (isset($_POST['clear_orders'])) {
-        $orders = [];
-    }
-
-    $_SESSION['orders'] = $orders;
-    header('Location: orders.php');
-    exit;
-}
-
 $orderItems = [];
 $totalQuantity = 0;
 $totalAmount = 0;
@@ -47,6 +30,75 @@ if (!empty($orders)) {
         $totalAmount += $item['line_total'];
     }
     unset($item);
+}
+
+$historyOrders = [];
+$historyItems = [];
+$stmt = $pdo->prepare('SELECT * FROM orders WHERE user_id = ? ORDER BY id DESC');
+$stmt->execute([$_SESSION['user_id']]);
+$historyOrders = $stmt->fetchAll();
+
+if (!empty($historyOrders)) {
+    $orderIds = array_column($historyOrders, 'id');
+    $placeholders = implode(',', array_fill(0, count($orderIds), '?'));
+    $stmt = $pdo->prepare(
+        "SELECT oi.*, mi.name AS item_name, mi.price AS item_price FROM order_items oi
+         JOIN menu_items mi ON oi.menu_item_id = mi.id
+         WHERE oi.order_id IN ($placeholders)
+         ORDER BY oi.id ASC"
+    );
+    $stmt->execute($orderIds);
+    $items = $stmt->fetchAll();
+
+    foreach ($items as $item) {
+        $historyItems[$item['order_id']][] = $item;
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['remove_dish'])) {
+        $removeId = intval($_POST['remove_dish']);
+        if ($removeId > 0 && isset($orders[$removeId])) {
+            unset($orders[$removeId]);
+        }
+    }
+
+    if (isset($_POST['clear_orders'])) {
+        $orders = [];
+    }
+
+    if (isset($_POST['save_order']) && !empty($orders)) {
+        try {
+            $pdo->beginTransaction();
+
+            $stmt = $pdo->prepare(
+                'INSERT INTO orders (user_id, total_quantity, total_amount) VALUES (?, ?, ?)'
+            );
+            $stmt->execute([$_SESSION['user_id'], $totalQuantity, $totalAmount]);
+            $orderId = $pdo->lastInsertId();
+
+            $stmtItem = $pdo->prepare(
+                'INSERT INTO order_items (order_id, menu_item_id, quantity, unit_price) VALUES (?, ?, ?, ?)' 
+            );
+            foreach ($orderItems as $item) {
+                $stmtItem->execute([
+                    $orderId,
+                    $item['id'],
+                    $item['quantity'],
+                    $item['price'],
+                ]);
+            }
+
+            $pdo->commit();
+            $orders = [];
+        } catch (Exception $e) {
+            $pdo->rollBack();
+        }
+    }
+
+    $_SESSION['orders'] = $orders;
+    header('Location: catalog.php');
+    exit;
 }
 ?>
 
@@ -109,7 +161,34 @@ if (!empty($orders)) {
           <form method="POST">
             <button class="btn btn-outline" type="submit" name="clear_orders">Очистить заказы</button>
           </form>
-          <a class="btn btn-primary" href="catalog.php">Продолжить покупки</a>
+          <form method="POST">
+            <button class="btn btn-primary" type="submit" name="save_order">Продолжить покупки</button>
+          </form>
+        </div>
+      <?php endif; ?>
+
+      <?php if (!empty($historyOrders)): ?>
+        <div class="order-history">
+          <h2 class="section-subtitle">История заказов</h2>
+          <?php foreach ($historyOrders as $order): ?>
+            <div class="order-history-card">
+              <div class="order-history-header">
+                <span>Заказ №<?= $order['id'] ?></span>
+                <span><?= date('d.m.Y H:i', strtotime($order['created_at'])) ?></span>
+              </div>
+              <div class="order-history-info">
+                <p>Позиции: <strong><?= $order['total_quantity'] ?></strong></p>
+                <p>Сумма: <strong><?= number_format((float)$order['total_amount'], 0, '.', ' ') ?> ₸</strong></p>
+              </div>
+              <ul class="order-history-list">
+                <?php foreach ($historyItems[$order['id']] ?? [] as $item): ?>
+                  <li>
+                    <?= htmlspecialchars($item['item_name']) ?> — <?= $item['quantity'] ?> шт × <?= number_format((float)$item['item_price'], 0, '.', ' ') ?> ₸
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+          <?php endforeach; ?>
         </div>
       <?php endif; ?>
     </section>

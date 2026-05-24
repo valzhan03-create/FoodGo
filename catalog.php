@@ -136,13 +136,6 @@ $count  = count($dishes);
   <div class="container">
     <section class="catalog">
       <h1 class="section-title">Каталог блюд</h1>
-      <div id="catalog-message"></div>
-
-      <?php if ($success): ?>
-        <div class="alert alert-success">
-          <p><?= htmlspecialchars($success) ?></p>
-        </div>
-      <?php endif; ?>
 
       <?php if (!empty($errors)): ?>
         <div class="alert alert-error">

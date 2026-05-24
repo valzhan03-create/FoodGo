@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 24 2026 г., 20:27
+-- Время создания: Май 24 2026 г., 20:59
 -- Версия сервера: 8.0.30
 -- Версия PHP: 7.2.34
 
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `menu_items` (
   `id` int NOT NULL,
-  `name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `price` decimal(8,2) NOT NULL,
-  `category` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Меню блюд доставки';
 
@@ -66,15 +66,77 @@ INSERT INTO `menu_items` (`id`, `name`, `description`, `price`, `category`, `ima
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `total_quantity` int NOT NULL DEFAULT '0',
+  `total_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `total_quantity`, `total_amount`, `status`, `created_at`) VALUES
+(1, 2, 47, '130130.00', 'pending', '2026-05-24 17:56:47'),
+(2, 2, 5, '13550.00', 'pending', '2026-05-24 17:57:10'),
+(3, 2, 16, '32140.00', 'pending', '2026-05-24 17:59:07'),
+(4, 2, 14, '33460.00', 'pending', '2026-05-24 17:59:28');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` int NOT NULL,
+  `order_id` int NOT NULL,
+  `menu_item_id` int NOT NULL,
+  `quantity` int NOT NULL DEFAULT '1',
+  `unit_price` decimal(10,2) NOT NULL DEFAULT '0.00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `menu_item_id`, `quantity`, `unit_price`) VALUES
+(1, 1, 1, 31, '2590.00'),
+(2, 1, 2, 13, '2790.00'),
+(3, 1, 3, 1, '2990.00'),
+(4, 1, 6, 1, '4590.00'),
+(5, 1, 13, 1, '5990.00'),
+(6, 2, 1, 3, '2590.00'),
+(7, 2, 2, 1, '2790.00'),
+(8, 2, 3, 1, '2990.00'),
+(9, 3, 1, 3, '2590.00'),
+(10, 3, 2, 1, '2790.00'),
+(11, 3, 3, 1, '2990.00'),
+(12, 3, 4, 11, '1690.00'),
+(13, 4, 1, 2, '2590.00'),
+(14, 4, 2, 2, '2790.00'),
+(15, 4, 3, 3, '2990.00'),
+(16, 4, 10, 2, '1390.00'),
+(17, 4, 11, 5, '2190.00');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `users`
 --
 
 CREATE TABLE `users` (
   `id` int NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Имя пользователя',
-  `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Email - уникальное поле',
-  `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Номер телефона',
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Хэш пароля (password_hash)',
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Имя пользователя',
+  `email` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Email - уникальное поле',
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Номер телефона',
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Хэш пароля (password_hash)',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Дата регистрации'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Таблица пользователей с информацией для авторизации';
 
@@ -98,6 +160,21 @@ ALTER TABLE `menu_items`
   ADD UNIQUE KEY `uq_menu_name` (`name`);
 
 --
+-- Индексы таблицы `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_orders_user_id` (`user_id`);
+
+--
+-- Индексы таблицы `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_order_items_order_id` (`order_id`),
+  ADD KEY `idx_order_items_menu_item_id` (`menu_item_id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -116,10 +193,33 @@ ALTER TABLE `menu_items`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
+-- AUTO_INCREMENT для таблицы `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT для таблицы `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `fk_order_items_menu_item` FOREIGN KEY (`menu_item_id`) REFERENCES `menu_items` (`id`) ON DELETE RESTRICT,
+  ADD CONSTRAINT `fk_order_items_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
