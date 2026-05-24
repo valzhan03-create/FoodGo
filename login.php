@@ -12,6 +12,18 @@ require_once 'config/db.php';
 $errors  = [];   // массив для сообщений об ошибках
 $email   = '';   // запомним email чтобы вернуть в форму при ошибке
 $success = '';   // сообщение об успешной регистрации
+$redirect = 'cabinet.php';
+
+$redirect_param = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $redirect_param = trim($_POST['redirect'] ?? '');
+} else {
+    $redirect_param = trim($_GET['redirect'] ?? '');
+}
+
+if ($redirect_param !== '' && strpos($redirect_param, '://') === false && strpos($redirect_param, '..') === false && $redirect_param[0] !== '/') {
+    $redirect = $redirect_param;
+}
 
 // Если пришли сюда после регистрации — показываем успех
 if (isset($_GET['registered'])) {
@@ -42,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['user_email'] = $user['email'];
 
-            header('Location: cabinet.php');
+            header('Location: ' . $redirect);
             exit;
 
         } else {
@@ -104,6 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <input class="form-input" type="password" id="password" name="password"
             placeholder="Ваш пароль" required>
         </div>
+
+        <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirect) ?>">
 
         <button class="btn btn-primary" type="submit">Войти</button>
 

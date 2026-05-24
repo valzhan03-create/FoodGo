@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^php -l catalog\\.php$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 18 2026 г., 21:04
+-- Время создания: Май 24 2026 г., 20:27
 -- Версия сервера: 8.0.30
 -- Версия PHP: 7.2.34
 
@@ -42,26 +42,26 @@ CREATE TABLE `menu_items` (
 --
 
 INSERT INTO `menu_items` (`id`, `name`, `description`, `price`, `category`, `image`, `created_at`) VALUES
-(1, 'Пицца Маргарита', 'Томатный соус, моцарелла, базилик', '2590.00', 'Пицца', 'https://picsum.photos/seed/1/600/400', '2026-05-18 16:02:17'),
-(2, 'Пицца Пепперони', 'Острая пепперони и сыр', '2790.00', 'Пицца', 'https://picsum.photos/seed/2/600/400', '2026-05-18 16:02:17'),
-(3, 'Пицца Четыре сыра', 'Моцарелла, пармезан, дорблю, чеддер', '2990.00', 'Пицца', 'https://picsum.photos/seed/3/600/400', '2026-05-18 16:02:17'),
-(4, 'Бургер Классический', 'Говяжья котлета, салат, томат, соус', '1690.00', 'Бургер', 'https://picsum.photos/seed/4/600/400', '2026-05-18 16:02:17'),
-(5, 'Бургер Чеддер', 'Сыр чеддер, карамелизированный лук', '1890.00', 'Бургер', 'https://picsum.photos/seed/5/600/400', '2026-05-18 16:02:17'),
-(6, 'Суши Сет \"Классик\"', 'Ассорти роллов и нигири (12 шт.)', '4590.00', 'Суши', 'https://picsum.photos/seed/6/600/400', '2026-05-18 16:02:17'),
-(7, 'Ролл Калифорния', 'Краб, авокадо, огурец, икра', '1690.00', 'Суши', 'https://picsum.photos/seed/7/600/400', '2026-05-18 16:02:17'),
-(8, 'Рамен с курицей', 'Ароматный бульон, лапша, курица', '1990.00', 'Супы', 'https://picsum.photos/seed/8/600/400', '2026-05-18 16:02:17'),
-(9, 'Салат Цезарь', 'Курица, пармезан, соус цезарь', '1590.00', 'Салаты', 'https://picsum.photos/seed/9/600/400', '2026-05-18 16:02:17'),
-(10, 'Салат Греческий', 'Фета, оливки, свежие овощи', '1390.00', 'Салаты', 'https://picsum.photos/seed/10/600/400', '2026-05-18 16:02:17'),
-(11, 'Лазанья', 'Сытная мясная лазанья с соусом бешамель', '2190.00', 'Паста', 'https://picsum.photos/seed/11/600/400', '2026-05-18 16:02:17'),
-(12, 'Паста Карбонара', 'Бекон, яйцо, пармезан', '1790.00', 'Паста', 'https://picsum.photos/seed/12/600/400', '2026-05-18 16:02:17'),
-(13, 'Стейк Рибай', '250 г, прожарка по выбору', '5990.00', 'Стейки', 'https://picsum.photos/seed/13/600/400', '2026-05-18 16:02:17'),
-(14, 'Куриный гриль', 'Маринованная курица на гриле', '1590.00', 'Гриль', 'https://picsum.photos/seed/14/600/400', '2026-05-18 16:02:17'),
-(15, 'Тако с говядиной', 'Тако с пикантной говяжьей начинкой', '1290.00', 'Тако', 'https://picsum.photos/seed/15/600/400', '2026-05-18 16:02:17'),
-(16, 'Фахитас', 'Курица с овощами, тортильи', '1890.00', 'Мексиканская', 'https://picsum.photos/seed/16/600/400', '2026-05-18 16:02:17'),
-(17, 'Карри с овощами', 'Овощное карри с рисом басмати', '1490.00', 'Карри', 'https://picsum.photos/seed/17/600/400', '2026-05-18 16:02:17'),
-(18, 'Том Ям', 'Тайский острый суп с креветками', '1890.00', 'Супы', 'https://picsum.photos/seed/18/600/400', '2026-05-18 16:02:17'),
-(19, 'Блины с лососем', 'Тонкие блины с копченым лососем', '1490.00', 'Закуски', 'https://picsum.photos/seed/19/600/400', '2026-05-18 16:02:17'),
-(20, 'Чизкейк', 'Нежный чизкейк на печенье', '990.00', 'Десерты', 'https://picsum.photos/seed/20/600/400', '2026-05-18 16:02:17');
+(1, 'Пицца Маргарита', 'Томатный соус, моцарелла, базилик', '2590.00', 'Пицца', 'https://images.gastronom.ru/N6zlwS_N-4UhPJWWd8qev9r-gn9hMs_9BVOmVI_7oE4/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzIxMjY0Y2U2LTA1YjAtNDExZC04ZTc5LTM5Y2IyNzVmOGE3Zi5qcGc.webp', '2026-05-18 16:02:17'),
+(2, 'Пицца Пепперони', 'Острая пепперони и сыр', '2790.00', 'Пицца', 'https://s1.eda.ru/StaticContent/Photos/Upscaled/120131085053/171027192707/p_O.jpg', '2026-05-18 16:02:17'),
+(3, 'Пицца Четыре сыра', 'Моцарелла, пармезан, дорблю, чеддер', '2990.00', 'Пицца', 'https://art-lunch.ru/content/uploads/2018/01/four_cheese_pizza_01.jpg', '2026-05-18 16:02:17'),
+(4, 'Бургер Классический', 'Говяжья котлета, салат, томат, соус', '1690.00', 'Бургер', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStlSYpte7poxcR7CcZ768Q7G4s2VcRXRz7IQ&s', '2026-05-18 16:02:17'),
+(5, 'Бургер Чеддер', 'Сыр чеддер, карамелизированный лук', '1890.00', 'Бургер', 'https://www.shutterstock.com/image-photo/smash-burger-cheddar-cheese-caramelized-600nw-2689477811.jpg', '2026-05-18 16:02:17'),
+(6, 'Суши Сет \"Классик\"', 'Ассорти роллов и нигири (12 шт.)', '4590.00', 'Суши', 'https://sushione.ru/assets/images/products/123/set-klassik.jpg', '2026-05-18 16:02:17'),
+(7, 'Ролл Калифорния', 'Краб, авокадо, огурец, икра', '1690.00', 'Суши', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqFroqQUsvzExFnRPkQm9DuQpewLXTw-Bi1w&s', '2026-05-18 16:02:17'),
+(8, 'Рамен с курицей', 'Ароматный бульон, лапша, курица', '1990.00', 'Супы', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnkggFuzpSLv3Tx5PZPV-iIQdGROLxSW7lWw&s', '2026-05-18 16:02:17'),
+(9, 'Салат Цезарь', 'Курица, пармезан, соус цезарь', '1590.00', 'Салаты', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq_ogzZ9cNUlTKEH3rXVe3fvNM1A-iEj0JZys4Obyu48dAERbXwoTizTSzNbkZlyGdQ9Zmvt3vqxAiQzQls-IdoaQFS5Rjyzo8Ymb79BcROA&s=10', '2026-05-18 16:02:17'),
+(10, 'Салат Греческий', 'Фета, оливки, свежие овощи', '1390.00', 'Салаты', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCF0vFEj94g1EOtFC9XReUnlj9cuvRHFMhoznYpRgA2uDAjn07M3IfnQnrxaf9mPy6yVtmMgqU5QcnrZfaxqiB-Hpc-i4zUJgKlqRUQNMCrA&s=10', '2026-05-18 16:02:17'),
+(11, 'Лазанья', 'Сытная мясная лазанья с соусом бешамель', '2190.00', 'Паста', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEocxOJaMscTZNQRVSTDf-oh9LF8oRCaU21VjoL38k5rNPeqEeMqFOT61B92I42u4UMyiUMQx2b4P3Qt2naTAuf_clxVHx0HRZDlKxyrwxdw&s=10', '2026-05-18 16:02:17'),
+(12, 'Паста Карбонара', 'Бекон, яйцо, пармезан', '1790.00', 'Паста', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjA97bQHjHAUGFT46evtuhLTiD-dz-Hp_ugQ&s', '2026-05-18 16:02:17'),
+(13, 'Стейк Рибай', '250 г, прожарка по выбору', '5990.00', 'Стейки', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3pjRkJJnCmi08T-_TolLmqw82ZPnIf0BAgfFvYY5nAbDlZasUyVI8hlZ0QO5DFZCXy_SSqAObo4F5BTH5nwmrCxoIblD5GQjM57guJ8XU8A&s=10', '2026-05-18 16:02:17'),
+(14, 'Куриный гриль', 'Маринованная курица на гриле', '1590.00', 'Гриль', 'https://e0.edimdoma.ru/data/recipes/0014/5508/145508-ed4_wide.jpg?1759224417', '2026-05-18 16:02:17'),
+(15, 'Тако с говядиной', 'Тако с пикантной говяжьей начинкой', '1290.00', 'Тако', 'https://www.maria-ra.ru/upload/resize_cache/iblock/fbc/800_800_1/fbc14c2b716c6572f9e9d7a0f251a8d6.jpg', '2026-05-18 16:02:17'),
+(16, 'Фахитас', 'Курица с овощами, тортильи', '1890.00', 'Мексиканская', 'https://kotanyi-ru.imgix.net/wp-content/uploads/2024/06/IMG_7883-web-min.jpg?auto=format,compress', '2026-05-18 16:02:17'),
+(17, 'Карри с овощами', 'Овощное карри с рисом басмати', '1490.00', 'Карри', 'https://images.gastronom.ru/7-LwzDcIBTsztT6wrX-Zc5xgupjucs8mCy3UtpMxgmk/pr:recipe-cover-image/g:ce/rs:auto:0:0:0/L2Ntcy9hbGwtaW1hZ2VzLzYwY2E1MmY4LTNkOTQtNDFmOC05Y2FhLTBiNGYyM2Y2MDZhMy5qcGc.webp', '2026-05-18 16:02:17'),
+(18, 'Том Ям', 'Тайский острый суп с креветками', '1890.00', 'Супы', 'https://vkusvill.ru/upload/resize/1046176/tom-yam_588x409x90_c.webp', '2026-05-18 16:02:17'),
+(19, 'Блины с лососем', 'Тонкие блины с копченым лососем', '1490.00', 'Закуски', 'https://img.iamcook.ru/2024/upl/recipes/zen/u-c6957f38cd3b81376d558bba01f29ee4.jpg', '2026-05-18 16:02:17'),
+(20, 'Чизкейк', 'Нежный чизкейк на печенье', '990.00', 'Десерты', 'https://art-lunch.ru/content/uploads/2014/08/cheesecake-new-york-001x2-1.jpg', '2026-05-18 16:02:17');
 
 -- --------------------------------------------------------
 
@@ -83,7 +83,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `created_at`) VALUES
-(1, '1', '1@mail.ru', '+77777777777', '$2y$10$DQzaqY511KYCUpSMGMBbpeuqG3NK/5Jiu6d.NYI84fxtoBwFMwJ4S', '2026-05-18 15:24:47');
+(1, '1', '1@mail.ru', '+77777777777', '$2y$10$DQzaqY511KYCUpSMGMBbpeuqG3NK/5Jiu6d.NYI84fxtoBwFMwJ4S', '2026-05-18 15:24:47'),
+(2, '2', '2@mail.ru', '+77777777777', '$2y$10$tSLX5skhruUCAgIoLTLWROKn0rQ1dTmR4.hA351d7JLzOK9mV9FpK', '2026-05-24 16:29:02');
 
 --
 -- Индексы сохранённых таблиц
@@ -118,7 +119,7 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

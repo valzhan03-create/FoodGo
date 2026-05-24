@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
       <ul class="navbar__menu">
       <li><a href="index.php">Главная</a></li>
-      <li><a href="menu.php">Меню</a></li>
+      <li><a href="catalog.php">Каталог</a></li>
       <li><a href="#about">О нас</a></li>
       <li><a href="#contacts">Контакты</a></li>
     </ul>
@@ -22,10 +22,10 @@ if (session_status() === PHP_SESSION_NONE) {
           <?= htmlspecialchars($_SESSION['user_name']) ?>
         </span>
         <a href="cabinet.php" class="btn btn-outline">Кабинет</a>
-        <a href="menu.php" class="btn btn-primary">Заказы</a>
+        <a href="orders.php" class="btn btn-primary">Заказы</a>
       <?php else: ?>
         <a href="login.php" class="btn btn-outline">Войти</a>
-        <a href="menu.php" class="btn btn-primary">Заказы</a>
+        <a href="orders.php" class="btn btn-primary">Заказы</a>
       <?php endif; ?>
     </div>
   </nav>

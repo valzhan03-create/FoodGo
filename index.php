@@ -43,7 +43,7 @@ $new_dishes = $stmt_new->fetchAll();
           <div class="dish-desc"><?= htmlspecialchars($dish['description']) ?></div>
           <div class="dish-footer">
             <div class="price"><?= number_format((float)$dish['price'], 0, '.', ' ') ?> ₸</div>
-            <a href="menu.php#menu" class="btn btn-outline order-btn">Заказать</a>
+            <a href="catalog.php" class="btn btn-outline order-btn">Заказать</a>
           </div>
         </div>
       <?php endforeach; ?>
