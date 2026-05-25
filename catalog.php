@@ -217,16 +217,22 @@ $count  = count($dishes);
                       <div class="order-quantity">В заказе: <?= $quantity ?></div>
                     <?php endif; ?>
                   </div>
-                  <?php if (!isset($_SESSION['user_id'])): ?>
-                    <a href="login.php?redirect=catalog.php" class="btn btn-outline order-btn">Войти чтобы заказать</a>
-                  <?php else: ?>
-                    <form class="order-card-form" method="POST">
-                      <input type="hidden" name="dish_id" value="<?= $dish['id'] ?>">
-                      <button class="btn btn-primary order-submit" type="submit" name="add_to_order" <?= $quantity >= 100 ? 'disabled' : '' ?>>
-                        <?= $quantity === 0 ? 'Заказать' : ($quantity >= 100 ? 'Максимум 100' : 'Добавить ещё') ?>
-                      </button>
-                    </form>
-                  <?php endif; ?>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <a href="detail.php?id=<?= $dish['id'] ?>" class="btn btn-outline order-btn" style="flex:1;">
+                      Подробнее
+                    </a>
+                    <?php if (!isset($_SESSION['user_id'])): ?>
+                      <a href="login.php?redirect=catalog.php" class="btn btn-outline order-btn" style="flex:1;">Войти</a>
+                    <?php else: ?>
+                      <form class="order-card-form" method="POST" style="flex:1;">
+                        <input type="hidden" name="dish_id" value="<?= $dish['id'] ?>">
+                        <button class="btn btn-primary order-submit" type="submit" name="add_to_order" 
+                                style="width:100%;" <?= $quantity >= 100 ? 'disabled' : '' ?>>
+                          <?= $quantity === 0 ? 'Заказать' : ($quantity >= 100 ? 'Максимум' : 'Ещё') ?>
+                        </button>
+                      </form>
+                    <?php endif; ?>
+                  </div>
                 </div>
               </div>
             <?php endforeach; ?>
